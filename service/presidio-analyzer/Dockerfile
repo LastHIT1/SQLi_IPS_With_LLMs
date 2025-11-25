@@ -1,8 +1,9 @@
-# Presidio Analyzer Wrapper (blank template)
+# Microsoft already had an image for presidio.
+# Official Presidio Analyzer container
+FROM mcr.microsoft.com/presidio-analyzer:latest
 
-# Most likely change for the actual image from Microsoft
-# This is just a placeholder for now
+# Expose the API port
+EXPOSE 3000
 
-FROM python:3.11-slim
-
-WORKDIR /app
+#Reminder to use:
+# docker run -p 3000:3000 mcr.microsoft.com/presidio-analyzer:latest
