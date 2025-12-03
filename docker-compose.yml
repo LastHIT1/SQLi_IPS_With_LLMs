@@ -5,6 +5,7 @@ services:
             - "8080:80"
         depends_on:
             - guardrail
+            - response-filter
         networks:
             - sentient-network
     guardrail:
@@ -26,14 +27,32 @@ services:
                   target: /app
                 - action: rebuild
                   path: ./guardrail/pyproject.toml
+    guardrailv2:
+        build: ./guardrailv2
+        command: uv run uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 5001
+        ports:
+            - "5001:5001"
+        depends_on:
+            - cache
+        networks:
+            - sentient-network
+        volumes:
+            - guardrailv2_cache:/app/.cache
+        develop:
+            watch:
+                - action: sync
+                  path: ./guardrailv2/
+                  target: /app
+                - action: rebuild
+                  path: ./guardrailv2/pyproject.toml
     test-app:
         build: ./test-app
-        command: uv run manage.py runserver 0.0.0.0:8000
         networks:
             - sentient-network
         depends_on:
             - database
             - cache
+            - guardrailv2
         develop:
             watch:
                 - action: sync
@@ -52,6 +71,22 @@ services:
         environment:
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=postgres
+    response-filter:
+        build: ./response-filter
+        command: uv run uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 5002
+        ports:
+            - "5002:5002"
+        depends_on:
+            - cache
+        networks:
+            - sentient-network
+        develop:
+            watch:
+                - action: sync
+                  path: ./response-filter/
+                  target: /app
+                - action: rebuild
+                  path: ./response-filter/pyproject.toml
     cache:
         image: redis:8-alpine
         ports:
@@ -60,6 +95,7 @@ services:
             - sentient-network
 volumes:
     db_data:
+    guardrailv2_cache:
 
 
 networks:

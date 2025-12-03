@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "crispy_bootstrap5",
     "crispy_forms",
+    "django_guardrail",
     "core",
 ]
 
@@ -112,3 +113,9 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Django Guardrail Settings
+GUARDRAIL_SERVICE_URL = "http://guardrailv2:5001"
+GUARDRAIL_TIMEOUT = 5.0
+GUARDRAIL_ENABLED = True
+GUARDRAIL_FAIL_OPEN = True

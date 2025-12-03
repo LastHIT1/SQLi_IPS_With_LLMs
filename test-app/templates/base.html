@@ -81,11 +81,9 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-center">
                     <li class="nav-item me-3">
-                        {% if guardrail_status %}
-                        <span class="badge bg-success">Guardrail: Active</span>
-                        {% else %}
-                        <span class="badge bg-danger">Guardrail: Inactive</span>
-                        {% endif %}
+                        <a href="{% url 'security' %}" class="nav-link text-white">
+                            <span class="badge bg-secondary">Security</span>
+                        </a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item me-2">

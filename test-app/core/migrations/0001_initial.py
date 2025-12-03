@@ -18,6 +18,7 @@ class Migration(migrations.Migration):
                 ('cover_image', models.URLField(max_length=500)),
                 ('price', models.DecimalField(decimal_places=2, default=9.99, max_digits=6)),
                 ('published_year', models.IntegerField(default=2020)),
+                ('is_public', models.BooleanField(default=True)),
             ],
         ),
     ]

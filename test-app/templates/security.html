@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="bg-fiu-blue text-white p-4 rounded mb-4">
+            <h1 class="mb-2">Security Control Panel</h1>
+            <p class="mb-0 text-fiu-gold">Manage SQL injection protection components</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Guardrail (LLM-based) -->
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-header bg-fiu-blue text-white">
+                <h5 class="mb-0 d-flex align-items-center">
+                    <span class="me-2">🤖</span> Guardrail (LLM)
+                </h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text text-muted">
+                    Pre-request filter using GPT-4.1-nano to detect SQL injection attempts before they reach Django.
+                </p>
+                <ul class="small text-muted">
+                    <li>Analyzes URL and request body</li>
+                    <li>Uses AI to detect injection patterns</li>
+                    <li>Runs at nginx gateway level</li>
+                </ul>
+                <div class="d-flex align-items-center justify-content-between mt-3">
+                    <span class="badge fs-6 status-badge" id="guardrail-status"
+                        data-active="{{ guardrail_status|yesno:'true,false' }}">
+                        {% if guardrail_status %}
+                        <span class="bg-success p-2 rounded">Active</span>
+                        {% else %}
+                        <span class="bg-danger p-2 rounded">Inactive</span>
+                        {% endif %}
+                    </span>
+                    <div class="btn-group">
+                        <button class="btn btn-sm btn-success toggle-btn"
+                            data-component="guardrail" data-action="activate"
+                            {% if guardrail_status %}disabled{% endif %}>
+                            Enable
+                        </button>
+                        <button class="btn btn-sm btn-danger toggle-btn"
+                            data-component="guardrail" data-action="deactivate"
+                            {% if not guardrail_status %}disabled{% endif %}>
+                            Disable
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guardrail v2 (ML-based) -->
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-header bg-fiu-blue text-white">
+                <h5 class="mb-0 d-flex align-items-center">
+                    <span class="me-2">🧠</span> Guardrail v2 (ML)
+                </h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text text-muted">
+                    Pre-query filter using MobileBERT model to detect SQL injection at the database query level.
+                </p>
+                <ul class="small text-muted">
+                    <li>Intercepts database queries</li>
+                    <li>Uses local ML model (no API calls)</li>
+                    <li>Runs inside Django app</li>
+                </ul>
+                <div class="d-flex align-items-center justify-content-between mt-3">
+                    <span class="badge fs-6 status-badge" id="guardrailv2-status"
+                        data-active="{{ guardrailv2_status|yesno:'true,false' }}">
+                        {% if guardrailv2_status %}
+                        <span class="bg-success p-2 rounded">Active</span>
+                        {% else %}
+                        <span class="bg-danger p-2 rounded">Inactive</span>
+                        {% endif %}
+                    </span>
+                    <div class="btn-group">
+                        <button class="btn btn-sm btn-success toggle-btn"
+                            data-component="guardrailv2" data-action="activate"
+                            {% if guardrailv2_status %}disabled{% endif %}>
+                            Enable
+                        </button>
+                        <button class="btn btn-sm btn-danger toggle-btn"
+                            data-component="guardrailv2" data-action="deactivate"
+                            {% if not guardrailv2_status %}disabled{% endif %}>
+                            Disable
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SQL Error Filter -->
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-header bg-fiu-blue text-white">
+                <h5 class="mb-0 d-flex align-items-center">
+                    <span class="me-2">🛡️</span> SQL Error Filter
+                </h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text text-muted">
+                    Post-response filter that hides SQL error messages from responses to prevent information leakage.
+                </p>
+                <ul class="small text-muted">
+                    <li>Scans response body for SQL errors</li>
+                    <li>Replaces with generic error page</li>
+                    <li>Runs at nginx gateway level</li>
+                </ul>
+                <div class="d-flex align-items-center justify-content-between mt-3">
+                    <span class="badge fs-6 status-badge" id="sql_error_filter-status"
+                        data-active="{{ sql_error_filter_status|yesno:'true,false' }}">
+                        {% if sql_error_filter_status %}
+                        <span class="bg-success p-2 rounded">Active</span>
+                        {% else %}
+                        <span class="bg-danger p-2 rounded">Inactive</span>
+                        {% endif %}
+                    </span>
+                    <div class="btn-group">
+                        <button class="btn btn-sm btn-success toggle-btn"
+                            data-component="sql_error_filter" data-action="activate"
+                            {% if sql_error_filter_status %}disabled{% endif %}>
+                            Enable
+                        </button>
+                        <button class="btn btn-sm btn-danger toggle-btn"
+                            data-component="sql_error_filter" data-action="deactivate"
+                            {% if not sql_error_filter_status %}disabled{% endif %}>
+                            Disable
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Architecture Diagram -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header bg-fiu-blue text-white">
+                <h5 class="mb-0">Request Flow Architecture</h5>
+            </div>
+            <div class="card-body">
+                <div class="text-center p-3" style="font-family: monospace; background: #f8f9fa; border-radius: 8px;">
+                    <div class="d-flex align-items-center justify-content-center flex-wrap gap-2">
+                        <span class="badge bg-secondary p-2">Client Request</span>
+                        <span>→</span>
+                        <span class="badge bg-primary p-2">Nginx Gateway</span>
+                        <span>→</span>
+                        <span class="badge bg-warning text-dark p-2">Guardrail (LLM)</span>
+                        <span>→</span>
+                        <span class="badge bg-info p-2">Django App</span>
+                        <span>→</span>
+                        <span class="badge bg-warning text-dark p-2">Guardrail v2 (ML)</span>
+                        <span>→</span>
+                        <span class="badge bg-dark p-2">PostgreSQL</span>
+                    </div>
+                    <div class="mt-3">
+                        <span class="badge bg-dark p-2">Response</span>
+                        <span>→</span>
+                        <span class="badge bg-danger p-2">SQL Error Filter</span>
+                        <span>→</span>
+                        <span class="badge bg-secondary p-2">Client</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', async function() {
+        const component = this.dataset.component;
+        const action = this.dataset.action;
+
+        this.disabled = true;
+
+        try {
+            const response = await fetch('/security/toggle/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: `component=${component}&action=${action}`
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const statusEl = document.getElementById(`${component}-status`);
+                const card = this.closest('.card-body');
+                const enableBtn = card.querySelector('[data-action="activate"]');
+                const disableBtn = card.querySelector('[data-action="deactivate"]');
+
+                if (data.active) {
+                    statusEl.innerHTML = '<span class="bg-success p-2 rounded">Active</span>';
+                    enableBtn.disabled = true;
+                    disableBtn.disabled = false;
+                } else {
+                    statusEl.innerHTML = '<span class="bg-danger p-2 rounded">Inactive</span>';
+                    enableBtn.disabled = false;
+                    disableBtn.disabled = true;
+                }
+            }
+        } catch (err) {
+            console.error('Toggle failed:', err);
+            this.disabled = false;
+        }
+    });
+});
+</script>
+{% endblock %}

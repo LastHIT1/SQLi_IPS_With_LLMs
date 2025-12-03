@@ -2,6 +2,8 @@ FROM python:3.13-alpine
 
 WORKDIR /app
 
+RUN apk add --no-cache netcat-openbsd
+
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     UV_LINK_MODE=copy \
@@ -17,4 +19,7 @@ RUN --mount=type=cache,target=/root/.cache \
 
 COPY . .
 
-CMD ["entrypoint.sh"]
+RUN chmod +x entrypoint.sh
+
+ENTRYPOINT ["/app/entrypoint.sh"]
+CMD ["uv", "run", "manage.py", "runserver", "0.0.0.0:8000"]

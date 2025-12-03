@@ -34,6 +34,11 @@
             <div class="position-relative">
                 <img src="{{ book.cover_image }}" class="card-img-top" alt="{{ book.title }}" style="height: 280px; object-fit: cover;">
                 <span class="position-absolute top-0 end-0 m-2 badge bg-fiu-gold">${{ book.price }}</span>
+                {% if book.is_public %}
+                <span class="position-absolute top-0 start-0 m-2 badge bg-success">Public</span>
+                {% else %}
+                <span class="position-absolute top-0 start-0 m-2 badge bg-danger">Private</span>
+                {% endif %}
             </div>
             <div class="card-body">
                 <h5 class="card-title text-fiu-blue">{{ book.title }}</h5>

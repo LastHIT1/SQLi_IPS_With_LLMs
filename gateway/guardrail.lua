@@ -1,8 +1,29 @@
 local http = require "resty.http"
 local cjson = require "cjson.safe"
+local redis = require "resty.redis"
 
 local GUARDRAIL_URL = "http://guardrail:5000/"
 local TIMEOUT_MS = 10000
+local SQL_ERROR_FILTER_KEY = "sql_error_filter_status"
+
+-- Check SQL error filter status from Redis
+local function check_sql_filter_status()
+    local red = redis:new()
+    red:set_timeout(100)
+
+    local ok, err = red:connect("cache", 6379)
+    if not ok then
+        return false  -- Default to enabled
+    end
+
+    local res, err = red:get(SQL_ERROR_FILTER_KEY)
+    red:set_keepalive(10000, 100)
+
+    if res and res ~= ngx.null and res == "0" then
+        return true  -- Disabled
+    end
+    return false  -- Enabled
+end
 
 local HTML_ESCAPE_MAP = {
     ["&"] = "&amp;",
@@ -79,6 +100,9 @@ end
 
 -- Main logic
 local uri = ngx.var.request_uri
+
+-- Check SQL error filter status and store in context for body_filter
+ngx.ctx.sql_filter_disabled = check_sql_filter_status()
 
 -- Skip static files early
 if uri:sub(1, 8) == "/static/" then

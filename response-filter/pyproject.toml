@@ -1,0 +1,9 @@
+[project]
+name = "response-filter"
+version = "0.1.0"
+description = "SQL error response filter service"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]~=0.115.0",
+    "redis~=5.2.0",
+]
