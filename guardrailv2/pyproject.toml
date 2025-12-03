@@ -1,0 +1,19 @@
+[project]
+name = "guardrailv2"
+version = "0.1.0"
+description = "Local ML-based SQL injection detection guardrail"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]~=0.122.0",
+    "redis~=7.1.0",
+    "torch>=2.5.0",
+    "transformers>=4.57.3",
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
