@@ -1,0 +1,80 @@
+"hello world",benign
+"' OR 1=1 --",malicious
+"python programming",benign
+"' UNION SELECT 1,2,3 --",malicious
+"1; DROP TABLE users",malicious
+"search query",benign
+"' AND USER IS NULL",malicious
+"1' OR '1' = '1",malicious
+"' OR '1'='1",malicious
+"funny cats",benign
+"' HAVING 1=1 --",malicious
+"' exec xp_cmdshell",malicious
+"' OR 0=0 --",malicious
+"order history",benign
+"1' OR '1'='1'--",malicious
+"' GROUP BY 1 --",malicious
+"' UNION ALL SELECT NULL, NULL --",malicious
+"customer support",benign
+"' OR 2>1",malicious
+"admin'/*",malicious
+"' OR 'a'='a",malicious
+"apple pie",benign
+"' OR TRUE --",malicious
+"best restaurants",benign
+"1'1",malicious
+"' WHERE 1=1--",malicious
+"login page",benign
+"1=1",malicious
+"' AND 1=0",malicious
+"' UNION SELECT null, null, null, null --",malicious
+"' OR '1'='1' /*",malicious
+"1 OR 1=1",malicious
+"' OR 1=1/*",malicious
+"new york city",benign
+"admin' --",malicious
+"' OR 1=1#",malicious
+"about us",benign
+"' OR 'x'='x",malicious
+"' OR SLEEP(5) --",malicious
+"' OR EXISTS(SELECT * FROM users) --",malicious
+"1 AND SLEEP(5)",malicious
+"' UNION SELECT 1, version(), user(), 4 --",malicious
+"'; DROP TABLE users; --",malicious
+"admin' OR '1'='1",malicious
+"GROUP BY 2--",malicious
+"' OR WAITFOR DELAY '0:0:5' --",malicious
+"' OR 'a'='a' --",malicious
+"WHERE 1=1--",malicious
+"' OR 1=1--",malicious
+"' OR 1=1",malicious
+"javascript tutorial",benign
+"1; SELECT * FROM users",malicious
+"' UNION ALL SELECT 1,2,3,4 --",malicious
+"' OR CURRENT_USER()=CURRENT_USER()",malicious
+"' OR 'text'='text'",malicious
+"' OR '1'='1' #",malicious
+"password reset",benign
+"terms of service",benign
+"' AND pg_sleep(5) --",malicious
+"' UNION SELECT name, password, email FROM users --",malicious
+"ORDER BY 3--",malicious
+"' OR 1=1 AND 1=0",malicious
+"1 AND 1=0",malicious
+"contact us",benign
+"1' AND ASCII(SUBSTRING(username,1,1))=97 --",malicious
+"' UNION SELECT table_name,NULL,NULL FROM information_schema.tables --",malicious
+"machine learning",benign
+"san francisco",benign
+"' OR IF(1=1, SLEEP(5), 0) --",malicious
+"1' OR '1'='1'#",malicious
+"' OR 1 IN (SELECT 1) --",malicious
+"' WHERE 1=0--",malicious
+"' OR NOT FALSE--",malicious
+"' UNION SELECT column_name,NULL,NULL FROM information_schema.columns --",malicious
+"' OR EXISTS(SELECT * FROM information_schema.tables) --",malicious
+"data science",benign
+"1' AND SUBSTRING(version(),1,1)='5' --",malicious
+"' OR '1'='1' AND '1'='1",malicious
+"'; UPDATE users SET password='password'; --",malicious
+"' OR 1=1 LIMIT 1--",malicious
