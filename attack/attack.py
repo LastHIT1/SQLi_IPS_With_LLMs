@@ -22,7 +22,7 @@ def attack(url, payload_file, mode, delay=0.05):
         5: "Everything_Enabled"
     }
 
-    results_dir = "attack/results/"
+    results_dir = "results/"
     if not os.path.exists(results_dir):
         os.makedirs(results_dir)
     filname_only = f"attack_results_mode_{mode}_{mode_names[mode]}.csv"
@@ -148,3 +148,4 @@ if __name__ == "__main__":
             args.delay = 0.05
 
     attack(args.url, args.file, args.mode, args.delay)
+
